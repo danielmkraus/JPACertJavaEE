@@ -1,0 +1,95 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+             xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+    <persistence-unit name="JpaPU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <!-- jboss -->
+        <!--jta-data-source>java:/ds_jpa</jta-data-source-->
+        <!-- glassfish -->
+        <jta-data-source>jdbc/DerbyJPACertDB</jta-data-source>
+        <class>com.abank.data.domain.Account</class>
+        <class>com.abank.data.domain.Address</class>
+        <class>com.abank.data.domain.Branch</class>
+        <class>com.abank.data.domain.Customer</class>
+        <class>com.abank.data.domain.Department</class>
+        <class>com.abank.data.domain.Employee</class>
+        <class>com.abank.data.domain.Phone</class>
+        <class>com.abank.data.domain.InfoMaterial</class>
+        <class>com.abank.data.domain.InfoMaterialOrder</class>
+        <class>com.abank.data.domain.Systemuser</class>
+        <class>com.abank.data.domain.Project</class>
+        <class>com.abank.data.domain.DesignProject</class>
+        <class>com.abank.data.domain.QualityProject</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <!-- EclipseLink specific properties -->
+            <!-- http://www.eclipse.org/eclipselink/api/2.2/org/eclipse/persistence/config/TargetServer.html -->
+            <property name="eclipselink.target-server" value="SunAS9"/>
+            <!-- http://www.eclipse.org/eclipselink/api/2.2/index.html?org/eclipse/persistence/config/TargetServer.html -->
+            <property name="eclipselink.target-database" value="Derby"/>
+            <property name="eclipselink.logging.level" value="ALL"/>
+            <!-- create-tables
+                   => tables won't be recreated each time a redeploy is executed
+                   => equivalent to PersistenceUnitProperties.CREATE_ONLY
+                   => tables are created only once and then left untouched when a redeploy occurs
+                 drop-and-create-tables
+                   => specifies that database tables should be dropped, then created
+                   => equivalent to PersistenceUnitProperties.DROP_AND_CREATE
+                 create-or-extend-tables
+                   => database tables should be created and if existing, missing columns will be added
+                   => can only be used with eclipselink.ddl-generation.output-mode with value of "database"
+                   => equivalent to PersistenceUnitProperties.CREATE_OR_EXTEND
+                 none
+                   => database tables should not be created or dropped
+                   => seems in case they did exist before and when set in Glassfish then they are deleted
+                   => equivalent to PersistenceUnitProperties.NONE
+             -->
+            <property name="eclipselink.ddl-generation" value="create-tables"/>
+
+            <!-- DDL generation hint START
+            The following options will lead to the tables not being generated when used with the combination of
+            - *another* option than eclipselink.ddl-generation = "create-tables"
+            - *and* eclipselink.ddl-generation.output-mode != "database", i.e. "both"/"sql-script"
+             side notes:
+             - since "database" is the default anyway no config necessary in that case
+             - this behaviour was tested on glassfish - on jboss eclipselink shouldn't really be used
+              since 1. extra configuration is necessary (whose contents could be again cause of unexpected behaviour)
+              and   2. eclipselink.ddl-generation = "drop-and-create-tables" does NOT recreate the shema
+              conclusion: with jboss use hibernate, with glassfish eclipselink -->
+            <!--<property name="eclipselink.ddl-generation.output-mode" value="both"/>-->
+            <!--<property name="eclipselink.create-ddl-jdbc-file-name" value="create_ddl.sql"/>-->
+            <!--<property name="eclipselink.drop-ddl-jdbc-file-name" value="drop_ddl.sql"/>-->
+            <!-- DDL generation hint END -->
+
+            <property name="eclipselink.debug" value="ALL"/>
+            <property name="eclipselink.logging.level.sql" value="ALL"/>
+            <property name="eclipselink.logging.level.cache" value="ALL"/>
+        </properties>
+    </persistence-unit>
+
+
+    <!--<persistence-unit name="JpaPULocal" transaction-type="RESOURCE_LOCAL">-->
+        <!--<provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>-->
+        <!--<class>com.abank.data.domain.Account</class>-->
+        <!--<class>com.abank.data.domain.Address</class>-->
+        <!--<class>com.abank.data.domain.Branch</class>-->
+        <!--<class>com.abank.data.domain.Customer</class>-->
+        <!--<class>com.abank.data.domain.Department</class>-->
+        <!--<class>com.abank.data.domain.Employee</class>-->
+        <!--<class>com.abank.data.domain.Phone</class>-->
+        <!--<class>com.abank.data.domain.InfoMaterial</class>-->
+        <!--<class>com.abank.data.domain.InfoMaterialOrder</class>-->
+        <!--<class>com.abank.data.domain.Systemuser</class>-->
+        <!--<exclude-unlisted-classes>true</exclude-unlisted-classes>-->
+        <!--<properties>-->
+            <!--<property name="javax.persistence.jdbc.driver" value="org.apache.derby.jdbc.ClientDriver" />-->
+            <!--<property name="javax.persistence.jdbc.url" value="jdbc:derby://localhost:1527/DerbyJPACertDB" />-->
+            <!--<property name="javax.persistence.jdbc.user" value="app" />-->
+            <!--<property name="javax.persistence.jdbc.password" value="app" />-->
+        <!--</properties>-->
+
+    <!--</persistence-unit>-->
+    <!---->
+</persistence>

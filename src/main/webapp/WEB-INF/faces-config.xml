@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!-- This file is not required if you don't need any extra configuration. -->
+<faces-config version="2.0" xmlns="http://java.sun.com/xml/ns/javaee"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xsi:schemaLocation="
+        http://java.sun.com/xml/ns/javaee
+        http://java.sun.com/xml/ns/javaee/web-facesconfig_2_0.xsd">
+
+	<!-- This descriptor activates the JSF 2.0 Servlet -->
+
+	<!-- Write your navigation rules here. You are encouraged to use CDI for 
+		creating @Named managed beans. -->
+	<application>
+		<resource-bundle>
+			<base-name>com.abank.messages</base-name>
+			<var>msgs</var>
+		</resource-bundle>
+		<message-bundle>com.abank.messages</message-bundle>
+		<locale-config>
+			<default-locale>de</default-locale>
+			<supported-locale>en</supported-locale>
+		</locale-config>
+	</application>
+
+
+	<navigation-rule>
+		<from-view-id>*</from-view-id>
+		<navigation-case>
+			<from-outcome>start</from-outcome>
+			<to-view-id>/start.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+		<navigation-case>
+			<from-outcome>navigationOptions</from-outcome>
+			<to-view-id>/NavigationOptions.xhtml</to-view-id>
+			<redirect />
+		</navigation-case>
+        <navigation-case>
+            <from-outcome>infoMaterial</from-outcome>
+            <to-view-id>/InfoMaterialOrder.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>selectCustomer</from-outcome>
+            <to-view-id>/ModifyCustomerDataSelect.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+        <navigation-case>
+            <from-outcome>editCustomer</from-outcome>
+            <to-view-id>/ModifyCustomerDataEdit.xhtml</to-view-id>
+            <redirect />
+        </navigation-case>
+	</navigation-rule>
+
+
+<!-- 	<lifecycle>
+		<phase-listener>com.abank.jsf.listeners.DebugPhaseListener</phase-listener>
+		<phase-listener>com.abank.jsf.listeners.ParameterPhaseListener</phase-listener>
+	</lifecycle> -->
+
+</faces-config>

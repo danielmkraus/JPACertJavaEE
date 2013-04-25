@@ -1,0 +1,6 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<dataset>
+    <branch id="1" branchName="MyNewBranch" street="Arlington Rd." housenumber="4" zip_code="3635" town="Honolulu" country="Pacific Ocean"/>
+    <branch id="2" branchName="MyNewBranch" street="Arlington Rd." housenumber="4" zip_code="3635" town="Honolulu" country="Pacific Ocean"/>
+    <branch id="3" branchName="MyNewBranch" street="Arlington Rd." housenumber="4" zip_code="3635" town="Honolulu" country="Pacific Ocean"/>
+</dataset>

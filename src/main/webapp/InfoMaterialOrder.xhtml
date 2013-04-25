@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+	xmlns:f="http://java.sun.com/jsf/core"
+	xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+	<h:outputStylesheet library="css" name="tables.css" />
+	<title>#{msgs.orderInfoMaterial}</title>
+</h:head>
+<h:body>
+	<h2>#{msgs.headingInfoMaterial}</h2>
+
+	<h:form>
+		<h:dataTable value="#{infoMaterialOrderBean.tableEntryList}"
+			var="tableEntryDetail" styleClass="bookTable"
+			headerClass="bookHeaders" rowClasses="oddRow,evenRow">
+			<h:column>
+				<f:facet name="header">#{msgs.articleNumber}</f:facet>
+                #{tableEntryDetail.infoMaterial.articleNumber}
+            </h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.infoMaterialTitle}</f:facet>
+                #{tableEntryDetail.infoMaterial.title}
+            </h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.number}</f:facet>
+				<h:inputText value="#{tableEntryDetail.quantity}" size="2" />
+			</h:column>
+			<h:column>
+				<f:facet name="header">#{msgs.update}</f:facet>
+				<h:commandLink value="#{msgs.update}"
+					action="#{infoMaterialOrderBean.updateOrder(tableEntryDetail)}" />
+			</h:column>
+		</h:dataTable>
+	</h:form>
+
+	<h:outputText rendered="#{infoMaterialOrderBean.cartContent.size() != 0}">
+		<h2>#{msgs.trolley}</h2>
+	</h:outputText>
+
+
+	<h:dataTable value="#{infoMaterialOrderBean.cartContent}"
+		var="tableEntryTrolley" styleClass="bookTable"
+		headerClass="bookHeaders" rowClasses="oddRow,evenRow"
+		rendered="#{infoMaterialOrderBean.cartContent.size() != 0}">
+		<h:column>
+			<f:facet name="header">#{msgs.articleNumber}</f:facet>
+            #{tableEntryTrolley.infoMaterial.articleNumber}
+        </h:column>
+		<h:column>
+			<f:facet name="header">#{msgs.infoMaterialTitle}</f:facet>
+            #{tableEntryTrolley.infoMaterial.title}
+        </h:column>
+		<h:column>
+			<f:facet name="header">#{msgs.number}</f:facet>
+            #{tableEntryTrolley.quantity}
+        </h:column>
+	</h:dataTable>
+
+	<h:form>
+		<h:commandButton id="cancelOrder" value="#{msgs.cancel}"
+			action="#{infoMaterialOrderBean.cancel}" />
+		<h:commandButton id="submitOrder" value="#{msgs.submit}"
+			action="#{infoMaterialOrderBean.submit}" />
+	</h:form>
+</h:body>
+</html>

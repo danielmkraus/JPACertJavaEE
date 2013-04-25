@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <h:outputStylesheet library="css" name="tables.css"/>
+    <title>#{msgs.orderInfoMaterial}</title>
+</h:head>
+<h:body>
+    <h2>#{msgs.modifyCustomer}</h2>
+
+    <h:outputText value="#{msgs.enterData}" rendered="#{modifyCustomer.customer == null}"/>
+
+    <f:view>
+        <h:form rendered="#{modifyCustomer.customer == null}">
+            <h:panelGrid columns="3">
+                <h:outputLabel for="firstname">#{msgs.firstname}</h:outputLabel>
+                <h:inputText id="firstname" value="#{modifyCustomer.firstname}" required="true"/>
+                <h:message for="firstname" style="color:#2d46ff" />
+                <h:outputLabel for="lastname">#{msgs.lastname}</h:outputLabel>
+                <h:inputText id="lastname" value="#{modifyCustomer.lastname}" required="true"/>
+                <h:message for="lastname" style="color:#2d46ff" />
+                <h:outputLabel for="birthdate">#{msgs.birthdate} #{msgs.formatDate}</h:outputLabel>
+                <h:inputText id="birthdate" value="#{modifyCustomer.birthDate}" required="true">
+                	<f:convertDateTime pattern="dd-MM-yyyy" />
+                </h:inputText>
+                <h:message for="birthdate" style="color:#2d46ff" />
+            </h:panelGrid>
+            <h:commandButton value="#{msgs.submit}" action="#{modifyCustomer.submit}"/>
+            <h:commandButton value="#{msgs.cancel}" action="#{modifyCustomer.cancel}"/>
+        </h:form>
+    </f:view>
+
+
+    <h:outputText value="#{msgs.customerFound}" rendered="#{modifyCustomer.customer != null}"/>
+
+    <f:view>
+        <h:form rendered="#{modifyCustomer.customer != null}">
+            <h:panelGrid columns="3">
+                <h:outputLabel for="firstnameCust">#{msgs.firstname}</h:outputLabel>
+                <h:outputText id="firstnameCust" value="#{modifyCustomer.firstname}"/>
+                <h:outputLabel for="lastnameCust">#{msgs.lastname}</h:outputLabel>
+                <h:outputText id="lastnameCust" value="#{modifyCustomer.lastname}"/>
+                <h:outputLabel for="birthdateCust">#{msgs.birthdate}</h:outputLabel>
+                <h:outputText id="birthdateCust" value="#{modifyCustomer.birthDate}">
+                	<f:convertDateTime pattern="dd-MM-yyyy" />
+                </h:outputText>
+            </h:panelGrid>
+            <h:commandButton value="#{msgs.edit}" action="#{modifyCustomer.edit}"/>
+            <h:commandButton value="#{msgs.cancel}" action="#{modifyCustomer.cancel}"/>
+        </h:form>
+    </f:view>
+
+</h:body>
+</html>

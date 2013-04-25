@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE resources PUBLIC "-//GlassFish.org//DTD GlassFish Application Server 3.1 Resource Definitions//EN"
+        "http://glassfish.org/dtds/glassfish-resources_1_5.dtd">
+<resources>
+
+    <jdbc-connection-pool name="jdbc/examplePool"
+                          res-type="javax.sql.DataSource"
+                          datasource-classname="org.apache.derby.jdbc.EmbeddedDataSource"
+                          is-isolation-level-guaranteed="false"
+                          ping="true">
+        <!-- use for an empty in-memory db -->
+        <!--<property name="ConnectionAttributes" value="create=true"/>-->
+        <!--<property name="DatabaseName" value="./target/derbydb"/>-->
+
+        <!--use for accessing the already pre-populated "production" db-->
+        <!--the db-server should not have been started in network mode-->
+        <property name="DatabaseName" value="../../Database/db-derby-10.9.1.0-bin/bin/DerbyJPACertDB"/>
+        <property name="Password" value=""/>
+        <property name="User" value=""/>
+        <!--<property name="createDatabase" value="create"/>-->
+    </jdbc-connection-pool>
+
+    <jdbc-resource jndi-name="jdbc/example" pool-name="jdbc/examplePool"/>
+
+</resources>

@@ -1,0 +1,15 @@
+# ignore intelliJ idea files
+.idea
+*.iml
+
+# no compiles
+target
+
+# ignore eclipse files
+.settings
+.classpath
+.project
+
+# other files
+TODO.txt
+arquillianGlasfish.txt

@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Strict//EN"
+        "http://www.w3.org/TR/xhtml1/DTD/xhtml1-strict.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:h="http://java.sun.com/jsf/html">
+<h:head>
+    <h:outputStylesheet library="css" name="tables.css"/>
+    <title>#{msgs.orderInfoMaterial}</title>
+</h:head>
+<h:body>
+    <h2>#{msgs.modifyCustomer}</h2>
+
+    <f:view>
+        <h:form>
+            <h:panelGrid columns="2">
+                <h:outputLabel for="firstnameCust">#{msgs.firstname}</h:outputLabel>
+                <h:inputText id="firstnameCust" value="#{modifyCustomer.customer.firstname}"/>
+                <h:outputLabel for="lastnameCust">#{msgs.lastname}</h:outputLabel>
+                <h:inputText id="lastnameCust" value="#{modifyCustomer.customer.lastname}"/>
+                <h:outputLabel for="birthdate">#{msgs.birthdate} #{msgs.formatDate}</h:outputLabel>
+                <h:inputText id="birthdate" value="#{modifyCustomer.birthDate}" required="true">
+                    <f:convertDateTime pattern="dd-MM-yyyy" />
+                    <h:message for="birthdate" style="color:#2d46ff" />
+                </h:inputText>
+                <h:outputLabel for="addressStreet">#{msgs.street}</h:outputLabel>
+                <h:inputText id="addressStreet" value="#{modifyCustomer.customer.address.street}"/>
+                <h:outputLabel for="addressNumber">#{msgs.housenumber}</h:outputLabel>
+                <h:inputText id="addressNumber" value="#{modifyCustomer.customer.address.number}"/>
+                <h:outputLabel for="addressZip">#{msgs.zip}</h:outputLabel>
+                <h:inputText id="addressZip" value="#{modifyCustomer.customer.address.zip}"/>
+                <h:outputLabel for="addressTown">#{msgs.town}</h:outputLabel>
+                <h:inputText id="addressTown" value="#{modifyCustomer.customer.address.town}"/>
+                <h:outputLabel for="addressCountry">#{msgs.country}</h:outputLabel>
+                <h:inputText id="addressCountry" value="#{modifyCustomer.customer.address.country}"/>
+                <h:dataTable value="#{modifyCustomer.customer.phoneNr}" var="phoneNr">
+                    <h:column rendered="#{phoneNr.type.toString() == 'MOBILE'}">
+                        <f:facet name="header">#{msgs.mobile}</f:facet>
+                        #{phoneNr.number}
+                    </h:column>
+                    <h:column rendered="#{phoneNr.type.toString() == 'FIX_LINE'}">
+                        <f:facet name="header">#{msgs.fix_line}</f:facet>
+                        #{phoneNr.number}
+                    </h:column>
+                    <h:column rendered="#{phoneNr.type.toString() == 'FAX'}">
+                        <f:facet name="header">#{msgs.fax}</f:facet>
+                        #{phoneNr.number}
+                    </h:column>
+                </h:dataTable>
+            </h:panelGrid>
+            <h:commandButton value="#{msgs.edit}" action="#{modifyCustomer.save}"/>
+            <h:commandButton value="#{msgs.cancel}" action="#{modifyCustomer.cancel}"/>
+        </h:form>
+    </f:view>
+
+</h:body>
+</html>

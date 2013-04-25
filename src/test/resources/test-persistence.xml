@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<persistence version="2.0"
+             xmlns="http://java.sun.com/xml/ns/persistence" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+             xsi:schemaLocation="http://java.sun.com/xml/ns/persistence http://java.sun.com/xml/ns/persistence/persistence_2_0.xsd">
+
+    <persistence-unit name="JpaPU" transaction-type="JTA">
+        <provider>org.eclipse.persistence.jpa.PersistenceProvider</provider>
+        <jta-data-source>jdbc/example</jta-data-source>
+        <class>com.abank.data.domain.Account</class>
+        <class>com.abank.data.domain.Address</class>
+        <class>com.abank.data.domain.Branch</class>
+        <class>com.abank.data.domain.Customer</class>
+        <class>com.abank.data.domain.Department</class>
+        <class>com.abank.data.domain.Employee</class>
+        <class>com.abank.data.domain.Phone</class>
+        <class>com.abank.data.domain.InfoMaterial</class>
+        <class>com.abank.data.domain.InfoMaterialOrder</class>
+        <class>com.abank.data.domain.Systemuser</class>
+        <class>com.abank.data.domain.Project</class>
+        <class>com.abank.data.domain.DesignProject</class>
+        <class>com.abank.data.domain.QualityProject</class>
+        <exclude-unlisted-classes>true</exclude-unlisted-classes>
+        <properties>
+            <property name="eclipselink.target-server" value="SunAS9"/>
+            <property name="eclipselink.target-database" value="Derby"/>
+            <property name="eclipselink.logging.level" value="ALL"/>
+            <!--<property name="eclipselink.ddl-generation" value="create-tables"/>-->
+            <property name="eclipselink.debug" value="ALL"/>
+            <property name="eclipselink.logging.level.sql" value="ALL"/>
+            <property name="eclipselink.logging.level.cache" value="ALL"/>
+        </properties>
+    </persistence-unit>
+
+</persistence>

@@ -1,0 +1,29 @@
+@CHARSET "UTF-8";
+
+.bookTable {
+    font-family:arial;
+    background-color: #647430;   /* Farbe Gitterlinien */
+    margin:10px 0pt 15px;
+    font-size: 8pt;
+    text-align: left;
+    width: 50%;
+}
+.bookHeaders {
+    background-color: #B8C981;   /* Farbe Hintergrund Header */
+    border: 1px solid #FFF;
+    font-size: 8pt;
+    padding-left: 4px;
+    padding-right: 10px;
+    padding-top: 4px;
+    padding-bottom: 4px;
+}
+.oddRow {
+    height: 20px;
+    text-align: left;
+    background: #F2F2F2;
+}
+.evenRow {
+    height: 20px;
+    text-align: left;
+    background: #FFFFF0;
+}
